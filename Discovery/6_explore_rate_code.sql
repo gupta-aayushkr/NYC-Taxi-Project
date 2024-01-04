@@ -1,0 +1,42 @@
+USE nyc_taxi_discovery;
+
+
+--- row terminator is new line and openjson function used
+SELECT *
+  FROM OPENROWSET(
+      BULK 'rate_code.json',
+      DATA_SOURCE = 'nyc_taxi_data_raw',
+      FORMAT = 'CSV',
+      FIELDTERMINATOR = '0x0b',
+      FIELDQUOTE = '0x0b',
+      ROWTERMINATOR = '0x0b'
+  )
+  WITH
+  (
+      jsonDoc NVARCHAR(MAX)
+  ) AS rate_code
+  CROSS APPLY OPENJSON(jsonDoc)
+  WITH(
+      rate_code_id TINYINT,
+      rate_code VARCHAR(20) 
+  );
+
+--- row terminator is vertical tab (multi-line-json) and openjson function used
+SELECT *
+  FROM OPENROWSET(
+      BULK 'rate_code_multi_line.json',
+      DATA_SOURCE = 'nyc_taxi_data_raw',
+      FORMAT = 'CSV',
+      FIELDTERMINATOR = '0x0b',
+      FIELDQUOTE = '0x0b',
+      ROWTERMINATOR = '0x0b'
+  )
+  WITH
+  (
+      jsonDoc NVARCHAR(MAX)
+  ) AS rate_code
+  CROSS APPLY OPENJSON(jsonDoc)
+  WITH(
+      rate_code_id TINYINT,
+      rate_code VARCHAR(21) 
+  );
