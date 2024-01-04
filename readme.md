@@ -34,6 +34,9 @@ The Synapse pipeline orchestrates various stages of the data processing pipeline
 
 Power BI is employed for creating insightful reports on payment methods used by passengers and taxi demand in NYC. The reports offer valuable insights for decision-making.
 
+Explore the Power BI reports for detailed insights:
+- [Payment Methods & Taxi Demand Analysis](https://www.novypro.com/project/nyc-taxi-project/payment-methods-report)
+
 ## Budget Analysis For Project
 
 A budget analysis section outlines the incurred costs, primarily from Azure Synapse Analytics Workspace, SQL Serverless Pool, Pipelines, and Storage.
